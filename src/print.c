@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "print.h"
 
 enum TYPES{
    SIGNED_INT, UNSIGNED_INT, LONG, LONG_LONG, DOUBLE, FLOAT, STRING, LONG_UNSIGNED_INT
@@ -14,32 +15,24 @@ typedef struct t_arg_types{
 
 } t_arg_types;
 
+
+ 
+char place_holders[] = {
+        'd', 'f', 'u', 's', 't'
+};
+    
 t_arg_types *arg_types_head = NULL;
 t_arg_types *arg_types_tail = NULL;
-    
-int print(char *, ...);
+
 void insert_in_type_list (char);
 void convert_arguments_to_string (va_list, char *[]);
-
-int main(void) {
-
-    int x = 10;
-    size_t y = 124124123;
-
-    print("Unsigned long integer variable: %t", y);
-    return 0;    
-
-}
-
-
+ 
+ 
 int print(char *string, ...) {
     int length = strlen(string);
     int length_without_place_holders = length;
     int num_of_args = 0;
-    char place_holders[] = {
-        'd', 'f', 'u', 's', 't'
-    };
-    
+
     va_list arguments;
     bool has_an_error = false;
 
@@ -87,7 +80,6 @@ int print(char *string, ...) {
         } 
         final_string[final_string_id] = string[i];
     }
-   
     va_end(arguments);
     register int syscall_no asm("rax") = 1;
     register int arg1 asm("rdi") = 1;
