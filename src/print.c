@@ -137,6 +137,12 @@ void convert_arguments_to_string (va_list arguments, char *buffer[]) {
             buffer[i] = (char*) malloc(length + 1);
             snprintf(buffer[i], length + 1, "%lu", arg);
         }
+        else if (arg_types_head->type == FLOAT) {
+            double arg = va_arg(arguments, double);
+            int length = snprintf(NULL, 0, "%f", arg);
+            buffer[i] = (char*) malloc(length + 1);
+            snprintf(buffer[i], length + 1, "%f", arg);
+        }
         i += 1;
         arg_types_head = arg_types_head->next_arg;
     }
