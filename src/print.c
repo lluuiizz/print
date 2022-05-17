@@ -6,7 +6,14 @@
 #include "print.h"
 
 enum TYPES{
-   SIGNED_INT, UNSIGNED_INT, LONG, LONG_LONG, DOUBLE, FLOAT, STRING, LONG_UNSIGNED_INT
+   SIGNED_INT,
+   UNSIGNED_INT,
+   LONG,
+   LONG_LONG,
+   DOUBLE,
+   FLOAT,
+   STRING,
+   LONG_UNSIGNED_INT
 };
 
 typedef struct t_arg_types{
